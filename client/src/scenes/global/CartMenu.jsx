@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import styled from "@motion/styled";
+import styled from "@emotion/styled";
 import { shades } from "../../theme";
 import {
   decreaseCount,
@@ -12,7 +12,6 @@ import {
   setIsCartOpen,
 } from "../../state";
 import { useNavigate } from "react-router-dom";
-import Close from "@mui/icons-material/Close";
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -72,7 +71,7 @@ const CartMenu = () => {
                       src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                     />
                   </Box>
-                  <Box flex="1 1 40%">
+                  <Box flex="1 1 60%">
                     
                     {/* ITEM NAME */}
                     <FlexBox mb="5px">
@@ -112,17 +111,40 @@ const CartMenu = () => {
                           <AddIcon />
                         </IconButton>
                       </Box>
+                      {/* PRICE */}
+                      <Typography fontweight="bold">
+                        ${item.attributes.price}
+                      </Typography>
                     </FlexBox>
-
-                    {/* PRICE */}
-                    <Typography fontweight="bold">
-                      ${item.attributes.price}
-                    </Typography>
                   </Box>
                 </FlexBox>
                 <Divider />
               </Box>
             ))}
+          </Box>
+
+          {/* ACTIONS */}
+          <Box m="20px 0">
+            <FlexBox m="20px 0">
+              <Typography fontWeight="bold">SUBTOTAL</Typography>
+              <Typography fontWeight="bold">${totalPrice}</Typography>
+            </FlexBox>
+            <Button
+              sx={{
+                backgroundColor: shades.primary[400],
+                color: "white",
+                borderRadius: 0,
+                minWidth: "100%",
+                padding: "20px 40px",
+                m: "20px 0",
+              }}
+              onClick={() => {
+                navigate("/checkout");
+                dispatch(setIsCartOpen({}));
+              }}
+            >
+              CHECKOUT
+            </Button>
           </Box>
         </Box>
       </Box>

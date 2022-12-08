@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Checkout from './scenes/checkout/Checkout.jsx';
 import Confirmation from './scenes/checkout/Confirmation.jsx';
+import CartMenu from './scenes/global/CartMenu.jsx';
 import Navbar from './scenes/global/Navbar.jsx';
 import Home from "./scenes/home/Home.jsx";
 import ItemDetails from './scenes/itemDetails/ItemDetails.jsx';
@@ -33,6 +34,7 @@ function App() {
         <Route path="checkout" element={<Checkout />} />
         <Route path="checkout/succes" element={<Confirmation />} />
       </Routes>
+      <CartMenu />
       </BrowserRouter>
   );
 }
